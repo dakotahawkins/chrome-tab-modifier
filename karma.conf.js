@@ -17,14 +17,15 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'node_modules/angular/angular.js',
-            'node_modules/angular-animate/angular-animate.js',
-            'node_modules/angular-aria/angular-aria.js',
-            'node_modules/angular-material/angular-material.js',
-            'node_modules/angular-google-analytics/dist/angular-google-analytics.js',
-            'node_modules/angular-route/angular-route.js',
-            'node_modules/angular-ui-tree/dist/angular-ui-tree.js',
-            'node_modules/angular-mocks/angular-mocks.js',
+            require.resolve('angular'),
+            require.resolve('angular-animate'),
+            require.resolve('angular-aria'),
+            require.resolve('angular-material'),
+            require.resolve('angular-messages'),
+            require.resolve('angular-google-analytics'),
+            require.resolve('angular-route'),
+            require.resolve('angular-ui-tree'),
+            require.resolve('angular-mocks'),
             'dist/js/options.js',
             'tests/**/*.js',
             {
