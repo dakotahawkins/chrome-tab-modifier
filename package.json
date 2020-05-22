@@ -32,13 +32,13 @@
     "jasmine-core": "~3.5.0",
     "jshint": "~2.11.1",
     "karma": "~5.0.9",
+    "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "~2.0.2",
     "karma-jasmine": "^3.1.1",
     "karma-jasmine-jquery": "~0.1.1",
     "karma-jasmine-matchers": "~4.0.2",
-    "karma-phantomjs-launcher": "~1.0.4",
     "karma-spec-reporter": "0.0.32",
-    "phantomjs-prebuilt": "~2.1.16",
+    "puppeteer": "^3.1.0",
     "yargs": "~15.3.1"
   }
 }

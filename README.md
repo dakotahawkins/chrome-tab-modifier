@@ -211,15 +211,15 @@ In case you want to contribute or just want to play with the code, follow the gu
 
 Download and install [NodeJS](http://nodejs.org/download/) to get [npm](https://www.npmjs.org/).
 
-Install `gulp` and `yarn` globally:
+Install `yarn` globally:
 
 ```bash
-npm install -g gulp yarn
+npm install -g yarn
 ```
 
-Clone the project and install dependencies with `yarn`.
+Clone the project and install dependencies with `yarn install`.
 
-Type `gulp` to watch your changes inside `src/` folder or type `gulp build` after each change.
+Type `yarn gulp` to watch your changes inside `src/` folder or type `yarn gulp build` after each change.
 
 ### Load local extension in Chrome
 

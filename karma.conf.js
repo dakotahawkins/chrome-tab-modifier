@@ -1,9 +1,11 @@
 // Karma configuration
-// Generated on Mon Sep 07 2015 14:03:02 GMT+0200 (CEST)
+// Generated on Fri May 22 2020 15:18:05 GMT-0400 (Eastern Daylight Time)
 
-module.exports = function(config) {
+process.env.CHROME_BIN = require('puppeteer').executablePath()
 
-    var configuration = {
+module.exports = function (config) {
+    config.set({
+
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: './',
 
@@ -34,8 +36,9 @@ module.exports = function(config) {
             }
         ],
 
-        // list of files to exclude
-        exclude: [],
+        // list of files / patterns to exclude
+        exclude: [
+        ],
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -43,12 +46,7 @@ module.exports = function(config) {
             'src/js/options/**/*.js': ['coverage']
         },
 
-        coverageReporter: {
-            type: 'text',
-            dir: 'coverage/'
-        },
-
-        // tests results reporter to use
+        // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         reporters: ['spec'],
@@ -62,39 +60,32 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_ERROR,
+        logLevel: config.LOG_DEBUG,
+        //logLevel: config.LOG_ERROR,
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: false,
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS'],
+        browsers: ['ChromeHeadless'],
+
+        // Which plugins to enable
+        plugins: [
+            'karma-chrome-launcher',
+            'karma-coverage',
+            'karma-jasmine-jquery',
+            'karma-jasmine',
+            'karma-jasmine-matchers',
+            'karma-spec-reporter',
+        ],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
         singleRun: true,
 
-        // you can define custom flags
-        customLaunchers: {
-            'PhantomJS_custom': {
-                base: 'PhantomJS',
-                options: {
-                    windowName: 'my-window',
-                    settings: {
-                        webSecurityEnabled: false
-                    }
-                },
-                flags: ['--load-images=true'],
-                debug: true
-            }
-        },
-
-        phantomjsLauncher: {
-            // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
-            exitOnResourceError: true
-        }
-    };
-
-    config.set(configuration);
-};
+        // Concurrency level
+        // how many browser should be started simultaneous
+        concurrency: Infinity,
+    })
+}

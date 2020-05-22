@@ -28,18 +28,16 @@
     // Core
     // ------------------------------------------------------------------------------------------------------
 
-    gulp.task('build_core', ['build_background_and_content_scripts']);
-
     gulp.task('build_background_and_content_scripts', function () {
         return gulp
             .src(['src/js/background.js', 'src/js/content.js'])
             .pipe(gulp.dest('dist/js'));
     });
 
+    gulp.task('build_core', gulp.series('build_background_and_content_scripts'));
+
     // Options
     // ------------------------------------------------------------------------------------------------------
-
-    gulp.task('build_options', ['build_options_styles', 'build_options_libs', 'build_options_script', 'build_options_html', 'build_options_icons']);
 
     gulp.task('build_options_styles', function () {
         return gulp
@@ -81,6 +79,14 @@
             .pipe(gulp.dest('dist/html'));
     });
 
+    gulp.task('build_options', gulp.series(
+        'build_options_styles',
+        'build_options_libs',
+        'build_options_script',
+        'build_options_html',
+        'build_options_icons'
+    ));
+
     // ------------------------------------------------------------------------------------------------------
 
     // gulp tests --coverage=html
@@ -103,21 +109,21 @@
         }, done).start();
     });
 
-    gulp.task('build', [
+    gulp.task('build', gulp.series(
         'build_core',
         'build_options',
         'lint'
-    ]);
+    ));
 
     gulp.task('watch', function () {
-        gulp.watch('src/**/*', ['build_core', 'build_options']);
+        gulp.watch('src/**/*', gulp.series('build_core', 'build_options'));
     });
 
     // Default tasks (called when running `gulp` from cli)
-    gulp.task('default', [
+    gulp.task('default', gulp.series(
         'build_core',
         'build_options',
         'watch'
-    ]);
+    ));
 
 }());
